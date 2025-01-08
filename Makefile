@@ -6,7 +6,7 @@
 #    By: cadenegr <neo_dgri@hotmail.com>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/11 12:24:18 by cadenegr          #+#    #+#              #
-#    Updated: 2024/06/11 12:26:14 by cadenegr         ###   ########.fr        #
+#    Updated: 2024/08/15 10:46:20 by cadenegr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ OBJ = $(patsubst $(SRCDIR)/%.c,$(OBJDIR)/%.o,$(SRC_FILES))
 INCLUDES = -I./include
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror #-pthread
 #LDFLAGS = -L$(LIBFTDIR) -lft_printf
 RM = rm -rf
 

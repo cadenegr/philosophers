@@ -6,7 +6,7 @@
 /*   By: cadenegr <neo_dgri@hotmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 10:51:26 by cadenegr          #+#    #+#             */
-/*   Updated: 2024/06/17 15:15:07 by cadenegr         ###   ########.fr       */
+/*   Updated: 2024/08/13 18:12:08 by cadenegr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,49 @@ int	ft_isuint(const char *s)
 	return (num);
 }
 
+int	ft_numlen(int n, int base)
+{
+	int	len;
+
+	if (n == 0)
+		return (1);
+	len = 0;
+	if (n < 0 && base == 10)
+		len++;
+	while (n != 0)
+	{
+		n /= base;
+		len++;
+	}
+	return (len);
+}
+
+char	*ft_itoa(int n)
+{
+	int			len;
+	char		*ptr;
+	const char	*base = "0123456789";
+
+	len = ft_numlen(n, 10);
+	ptr = malloc(sizeof(char) * (len + 1));
+	if (ptr == NULL)
+		return (NULL);
+	ptr[len] = 0;
+	if (n == 0)
+		ptr[0] = '0';
+	if (n < 0)
+		ptr[0] = '-';
+	while (n != 0)
+	{
+		if (n > 0)
+			ptr[--len] = base[n % 10];
+		else
+			ptr[--len] = base[-(n % 10)];
+		n /= 10;
+	}
+	return (ptr);
+}
+
 int	ft_strlen(char *s)
 {
 	int	len;
@@ -55,12 +98,4 @@ int	ft_strlen(char *s)
 	while (s[len])
 		len++;
 	return (len);
-}
-
-int	ft_error(char *s)
-{
-	write (2, "Error: ", ft_strlen("Error: "));
-	write (2, s, ft_strlen(s));
-	write (2, "\n", 1);
-	return (1);
 }
